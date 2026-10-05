@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Local Service Finder for Students</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f7fb;
+    color: #1f2937;
+}
+
+/* ================= HEADER ================= */
+
+header {
+    height: 70px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 21px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: #2563eb;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #2563eb;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 390px;
+    padding: 80px 7%;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-size: 46px;
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #dbeafe;
+}
+
+
+/* ================= COLLEGE ================= */
+
+.college-section {
+    width: 86%;
+    margin: -45px auto 40px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 5;
+}
+
+.college-section h2 {
+    margin-bottom: 15px;
+}
+
+.college-select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    background: white;
+}
+
+
+/* ================= SECTION ================= */
+
+.section {
+    width: 86%;
+    margin: 50px auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-title h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.section-title p {
+    color: #6b7280;
+}
+
+
+/* ================= CATEGORIES ================= */
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.category {
+    background: white;
+    padding: 22px 10px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #e5e7eb;
+    transition: 0.25s;
+}
+
+.category:hover {
+    transform: translateY(-5px);
+    border-color: #2563eb;
+    box-shadow: 0 8px 20px rgba(37,99,235,0.12);
+}
+
+.category-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.category h3 {
+    font-size: 14px;
+}
+
+
+/* ================= SEARCH ================= */
+
+.search-box {
+    max-width: 650px;
+    margin: 0 auto 35px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 16px 20px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #2563eb;
+}
+
+
+/* ================= SERVICES ================= */
+
+.services {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.card {
+    background: white;
+    border-radius: 14px;
+    padding: 25px;
+    border: 1px solid #e5e7eb;
+    transition: 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.card-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    background: #eff6ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.card button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.card button:hover {
+    background: #1d4ed8;
+}
+
+
+/* ================= EMPTY MESSAGE ================= */
+
+.empty-message {
+    text-align: center;
+    background: white;
+    border: 1px dashed #cbd5e1;
+    border-radius: 14px;
+    padding: 45px 20px;
+    color: #64748b;
+}
+
+.empty-icon {
+    font-size: 45px;
+    margin-bottom: 12px;
+}
+
+.empty-message h3 {
+    margin-bottom: 8px;
+    color: #374151;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #111827;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    margin-top: 70px;
+}
+
+footer p {
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 1000px) {
+
+    .categories {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .services {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 600px) {
+
+    header {
+        padding: 0 4%;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    nav {
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 60px 6%;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .section,
+    .college-section {
+        width: 92%;
+    }
+
+    .categories {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .services {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🎓
+        </div>
+
+        Local Service Finder
+
+    </div>
+
+
+    <nav>
+
+        <a href="#">
+            Home
+        </a>
+
+        <a href="#categories">
+            Categories
+        </a>
+
+        <a href="#services">
+            Services
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Find Services
+            Around Your College
+        </h1>
+
+        <p>
+            Select your college and choose a service
+            category to find useful services for students.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= COLLEGE ================= -->
+
+<div class="college-section">
+
+    <h2>
+        Select Your College
+    </h2>
+
+
+    <select
+        id="college"
+        class="college-select"
+        onchange="collegeSelected()"
+    >
+
+        <option value="">
+            -- Select College --
+        </option>
+
+        <option value="vce">
+            Vivekananda College of Engineering & Technology
+        </option>
+
+        <option value="canara">
+            Canara College of Engineering & Technology
+        </option>
+
+        <option value="kvg">
+            K V G College of Engineering & Technology
+        </option>
+
+    </select>
+
+</div>
+
+
+
+<!-- ================= CATEGORIES ================= -->
+
+<section
+    class="section"
+    id="categories"
+>
+
+    <div class="section-title">
+
+        <h2>
+            Choose a Service Category
+        </h2>
+
+        <p>
+            Select one category to view its services
+        </p>
+
+    </div>
+
+
+    <div class="categories">
+
+
+        <!-- PG -->
+
+        <div
+            class="category"
+            onclick="filterCategory('pg')"
+        >
+
+            <div class="category-icon">
+                🏠
+            </div>
+
+            <h3>
+                PG & Accommodation
+            </h3>
+
+        </div>
+
+
+        <!-- FOOD -->
+
+        <div
+            class="category"
+            onclick="filterCategory('food')"
+        >
+
+            <div class="category-icon">
+                🍴
+            </div>
+
+            <h3>
+                Food
+            </h3>
+
+        </div>
+
+
+        <!-- STATIONERY -->
+
+        <div
+            class="category"
+            onclick="filterCategory('stationery')"
+        >
+
+            <div class="category-icon">
+                📚
+            </div>
+
+            <h3>
+                Stationery
+            </h3>
+
+        </div>
+
+
+        <!-- REPAIR -->
+
+        <div
+            class="category"
+            onclick="filterCategory('repair')"
+        >
+
+            <div class="category-icon">
+                🔧
+            </div>
+
+            <h3>
+                Repairs
+            </h3>
+
+        </div>
+
+
+        <!-- TRANSPORT -->
+
+        <div
+            class="category"
+            onclick="filterCategory('transport')"
+        >
+
+            <div class="category-icon">
+                🚌
+            </div>
+
+            <h3>
+                Transportation
+            </h3>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= SERVICES ================= -->
+
+<section
+    class="section"
+    id="services"
+>
+
+    <div class="section-title">
+
+        <h2 id="serviceTitle">
+            Services
+        </h2>
+
+        <p id="serviceSubtitle">
+            Select a category above to view services
+        </p>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search within selected category..."
+            onkeyup="searchServices()"
+        >
+
+    </div>
+
+
+    <!-- EMPTY -->
+
+    <div
+        id="emptyMessage"
+        class="empty-message"
+    >
+
+        <div class="empty-icon">
+            🔍
+        </div>
+
+        <h3>
+            No category selected
+        </h3>
+
+        <p>
+            Please select a service category above.
+        </p>
+
+    </div>
+
+
+
+    <!-- SERVICE CARDS -->
+
+    <div
+        class="services"
+        id="servicesContainer"
+        style="display:none;"
+    >
+
+
+
+        <!-- ================= PG ================= -->
+
+        <div
+            class="card"
+            data-category="pg"
+        >
+
+            <div class="card-icon">
+                🏠
+            </div>
+
+            <h3>
+                Green View PG
+            </h3>
+
+            <p>
+                Comfortable PG accommodation for students.
+            </p>
+
+            <p>
+                📍 Near College Campus
+            </p>
+
+            <button
+                onclick="showDetails(
+                    'Green View PG',
+                    'Comfortable student accommodation near college.'
+                )"
+            >
+                View Details
+            </button>
+
+        </div>
+
+
+
+        <!-- ================= FOOD ================= -->
+
+        <div
+            class="card"
+            data-category="food"
+        >
+
+            <div class="card-icon">
+                🍴
+            </div>
+
+            <h3>
+                Student Food Corner
+            </h3>
+
+            <p>
+                Affordable and student-friendly food.
+            </p>
+
+            <p>
+                📍 Near College
+            </p>
+
+            <button
+                onclick="showDetails(
+                    'Student Food Corner',
+                    'Affordable food for students.'
+                )"
+            >
+                View Details
+            </button>
+
+        </div>
+
+
+
+        <!-- ================= GENERIC STATIONERY ================= -->
+
+        <div
+            class="card"
+            data-category="stationery"
+            id="genericStationery"
+        >
+
+            <div class="card-icon">
+                📚
+            </div>
+
+            <h3>
+                Campus Stationery
+            </h3>
+
+            <p>
+                General stationery and academic materials.
+            </p>
+
+            <p>
+                📍 Near College
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= REPAIR ================= -->
+
+        <div
+            class="card"
+            data-category="repair"
+        >
+
+            <div class="card-icon">
+                🔧
+            </div>
+
+            <h3>
+                Tech Repair Centre
+            </h3>
+
+            <p>
+                Mobile and laptop repair services.
+            </p>
+
+            <p>
+                📍 Near College
+            </p>
+
+            <button
+                onclick="showDetails(
+                    'Tech Repair Centre',
+                    'Mobile and laptop repair services.'
+                )"
+            >
+                View Details
+            </button>
+
+        </div>
+
+
+
+        <!-- ================= TRANSPORT ================= -->
+
+        <div
+            class="card"
+            data-category="transport"
+        >
+
+            <div class="card-icon">
+                🚌
+            </div>
+
+            <h3>
+                College Bus Point
+            </h3>
+
+            <p>
+                Transportation information for students.
+            </p>
+
+            <p>
+                📍 College Bus Stop
+            </p>
+
+            <button
+                onclick="showDetails(
+                    'College Bus Point',
+                    'Transportation information for students.'
+                )"
+            >
+                View Details
+            </button>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             VIVEKANANDA COLLEGE - STATIONERY
+        =================================================== -->
+
+
+        <!-- 1 -->
+
+        <div
+            class="card vce-stationery"
+            data-category="stationery"
+        >
+
+            <div class="card-icon">
+                📚
+            </div>
+
+            <h3>
+                SRI LAXMI BOOKS STATIONERY & XEROX
+            </h3>
+
+            <p>
+                Books, stationery, Xerox and printing services.
+            </p>
+
+            <p>
+                📍 Nehru Nagar, Puttur,
+                Karnataka 574203
+            </p>
+
+            <button
+                onclick="openMap(
+                    'SRI LAXMI BOOKS STATIONERY & XEROX, Nehru Nagar, Puttur, Karnataka 574203'
+                )"
+            >
+                Get Directions
+            </button>
+
+        </div>
+
+
+
+        <!-- 2 -->
+
+        <div
+            class="card vce-stationery"
+            data-category="stationery"
+        >
+
+            <div class="card-icon">
+                📖
+            </div>
+
+            <h3>
+                SLV Book House
+            </h3>
+
+            <p>
+                Books and stationery supplies.
+            </p>
+
+            <p>
+                📍 Q5GJ+VGM, Nehru Nagar,
+                Puttur, Karnataka 574203
+            </p>
+
+            <button
+                onclick="openMap(
+                    'SLV Book House, Q5GJ+VGM, Nehru Nagar, Puttur, Karnataka 574203'
+                )"
+            >
+                Get Directions
+            </button>
+
+        </div>
+
+
+
+        <!-- 3 -->
+
+        <div
+            class="card vce-stationery"
+            data-category="stationery"
+        >
+
+            <div class="card-icon">
+                🏪
+            </div>
+
+            <h3>
+                Ambika Store
+            </h3>
+
+            <p>
+                General stationery and student supplies.
+            </p>
+
+            <p>
+                📍 Nehru Nagar, Puttur,
+                Karnataka 574203
+            </p>
+
+            <button
+                onclick="openMap(
+                    'Ambika Store, Nehru Nagar, Puttur, Karnataka 574203'
+                )"
+            >
+                Get Directions
+            </button>
+
+        </div>
+
+
+
+        <!-- 4 -->
+
+        <div
+            class="card vce-stationery"
+            data-category="stationery"
+        >
+
+            <div class="card-icon">
+                🛍️
+            </div>
+
+            <h3>
+                Lakshmi Store
+            </h3>
+
+            <p>
+                Stationery and general student supplies.
+            </p>
+
+            <p>
+                📍 Q5HJ+GPG, Nehru Nagar,
+                Puttur, Karnataka 574203
+            </p>
+
+            <button
+                onclick="openMap(
+                    'Lakshmi Store, Q5HJ+GPG, Nehru Nagar, Puttur, Karnataka 574203'
+                )"
+            >
+                Get Directions
+            </button>
+
+        </div>
+
+
+
+        <!-- 5 -->
+
+        <div
+            class="card vce-stationery"
+            data-category="stationery"
+        >
+
+            <div class="card-icon">
+                🖨️
+            </div>
+
+            <h3>
+                Shreenidhi Offset Printers and Graphics
+            </h3>
+
+            <p>
+                Printing and graphics related services.
+            </p>
+
+            <p>
+                📍 Vivekananda College Road,
+                Nehru Nagar, Puttur,
+                Karnataka 574203
+            </p>
+
+            <button
+                onclick="openMap(
+                    'Shreenidhi Offset Printers and Graphics, Vivekananda College Road, Nehru Nagar, Puttur, Karnataka 574203'
+                )"
+            >
+                Get Directions
+            </button>
+
+        </div>
+
+
+
+        <!-- 6 -->
+
+        <div
+            class="card vce-stationery"
+            data-category="stationery"
+        >
+
+            <div class="card-icon">
+                📚
+            </div>
+
+            <h3>
+                Shubha Stores & Xerox
+            </h3>
+
+            <p>
+                Books, stationery and Xerox services.
+            </p>
+
+            <p>
+                📍 Rego Complex, Darbe,
+                Puttur, Karnataka 574202
+            </p>
+
+            <button
+                onclick="openMap(
+                    'Shubha Stores & Xerox, Rego Complex, Darbe, Puttur, Karnataka 574202'
+                )"
+            >
+                Get Directions
+            </button>
+
+        </div>
+
+
+
+        <!-- 7 -->
+
+        <div
+            class="card vce-stationery"
+            data-category="stationery"
+        >
+
+            <div class="card-icon">
+                📷
+            </div>
+
+            <h3>
+                Shivashakti Stationery and Studio
+            </h3>
+
+            <p>
+                Stationery and studio services.
+            </p>
+
+            <p>
+                📍 Nehru Nagar, Puttur,
+                Karnataka 574203
+            </p>
+
+            <button
+                onclick="openMap(
+                    'Shivashakti Stationery and Studio, Nehru Nagar, Puttur, Karnataka 574203'
+                )"
+            >
+                Get Directions
+            </button>
+
+        </div>
+
+
+
+        <!-- 8 -->
+
+        <div
+            class="card vce-stationery"
+            data-category="stationery"
+        >
+
+            <div class="card-icon">
+                📚
+            </div>
+
+            <h3>
+                Ambika Books & Stationery
+            </h3>
+
+            <p>
+                Books, stationery and educational materials.
+            </p>
+
+            <p>
+                📍 VC Road, Bolwar,
+                Puttur, Karnataka
+            </p>
+
+            <button
+                onclick="openMap(
+                    'Ambika Books & Stationery, VC Road, Bolwar, Puttur, Karnataka'
+                )"
+            >
+                Get Directions
+            </button>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             CANARA COLLEGE - FOOD
+        =================================================== -->
+
+        <div
+            class="card canara-food"
+            data-category="food"
+        >
+
+            <div class="card-icon">
+                🍴
+            </div>
+
+            <h3>
+                HOTEL SAMRUDDHI
+            </h3>
+
+            <p>
+                Food and dining service for students.
+            </p>
+
+            <p>
+                📍 VXXQ+J2W,
+                Farengipet-Benjan Padavu Rd,
+                Ammunje, Karnataka 574219
+            </p>
+
+            <button
+                onclick="openMap(
+                    'HOTEL SAMRUDDHI, VXXQ+J2W, Farengipet-Benjan Padavu Rd, Ammunje, Karnataka 574219'
+                )"
+            >
+                Get Directions
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026 Local Service Finder for Students
+    </p>
+
+    <p style="margin-top:8px;">
+        Making student life easier through local services.
+    </p>
+
+</footer>
+
+
+
+<script>
+
+/* ==================================================
+   GLOBAL VARIABLE
+================================================== */
+
+let selectedCategory = "";
+
+
+
+/* ==================================================
+   COLLEGE SELECTION
+================================================== */
+
+function collegeSelected() {
+
+    selectedCategory = "";
+
+    document.getElementById("search").value = "";
+
+    document.getElementById("servicesContainer").style.display =
+        "none";
+
+    document.getElementById("emptyMessage").style.display =
+        "block";
+
+    document.getElementById("serviceTitle").innerText =
+        "Services";
+
+    document.getElementById("serviceSubtitle").innerText =
+        "Select a category above to view services";
+}
+
+
+
+/* ==================================================
+   CATEGORY FILTER
+================================================== */
+
+function filterCategory(category) {
+
+    const college =
+        document.getElementById("college").value;
+
+
+    /* College must be selected */
+
+    if (college === "") {
+
+        alert("Please select your college first.");
+
+        document.getElementById("college").focus();
+
+        return;
+    }
+
+
+    selectedCategory = category;
+
+    document.getElementById("search").value = "";
+
+    document.getElementById("emptyMessage").style.display =
+        "none";
+
+    document.getElementById("servicesContainer").style.display =
+        "grid";
+
+
+    /* Category names */
+
+    const categoryNames = {
+
+        pg: "PG & Accommodation",
+
+        food: "Food",
+
+        stationery: "Stationery",
+
+        repair: "Repairs",
+
+        transport: "Transportation"
+
+    };
+
+
+    document.getElementById("serviceTitle").innerText =
+        categoryNames[category];
+
+    document.getElementById("serviceSubtitle").innerText =
+        "Services available in this category";
+
+
+    /* Filter cards */
+
+    document
+        .querySelectorAll("#servicesContainer .card")
+        .forEach(function(card) {
+
+
+            const cardCategory =
+                card.dataset.category;
+
+
+            /* VIVEKANANDA STATIONERY */
+
+            if (
+                card.classList.contains("vce-stationery")
+            ) {
+
+                if (
+                    college === "vce" &&
+                    category === "stationery"
+                ) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+                return;
+            }
+
+
+            /* CANARA FOOD */
+
+            if (
+                card.classList.contains("canara-food")
+            ) {
+
+                if (
+                    college === "canara" &&
+                    category === "food"
+                ) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+                return;
+            }
+
+
+            /* NORMAL CARDS */
+
+            if (
+                cardCategory === category
+            ) {
+
+                card.style.display = "block";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+
+    /* Scroll to services */
+
+    document
+        .getElementById("services")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+}
+
+
+
+/* ==================================================
+   SEARCH
+================================================== */
+
+function searchServices() {
+
+    const search =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase();
+
+
+    const college =
+        document
+            .getElementById("college")
+            .value;
+
+
+    if (selectedCategory === "") {
+        return;
+    }
+
+
+    document
+        .querySelectorAll("#servicesContainer .card")
+        .forEach(function(card) {
+
+
+            const text =
+                card.innerText.toLowerCase();
+
+
+            /* VCE STATIONERY */
+
+            if (
+                card.classList.contains("vce-stationery")
+            ) {
+
+                if (
+                    college === "vce" &&
+                    selectedCategory === "stationery" &&
+                    text.includes(search)
+                ) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+                return;
+            }
+
+
+            /* CANARA FOOD */
+
+            if (
+                card.classList.contains("canara-food")
+            ) {
+
+                if (
+                    college === "canara" &&
+                    selectedCategory === "food" &&
+                    text.includes(search)
+                ) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+                return;
+            }
+
+
+            /* NORMAL CARDS */
+
+            if (
+                card.dataset.category === selectedCategory &&
+                text.includes(search)
+            ) {
+
+                card.style.display = "block";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+}
+
+
+
+/* ==================================================
+   DETAILS
+================================================== */
+
+function showDetails(name, description) {
+
+    alert(
+        name +
+        "\n\n" +
+        description
+    );
+
+}
+
+
+
+/* ==================================================
+   GOOGLE MAPS DIRECTIONS
+================================================== */
+
+function openMap(address) {
+
+    const mapUrl =
+        "https://www.google.com/maps/dir/?api=1&destination=" +
+        encodeURIComponent(address);
+
+    window.open(
+        mapUrl,
+        "_blank"
+    );
+
+}
+
+</script>
+
+</body>
+</html>
